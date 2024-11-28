@@ -4,7 +4,8 @@
   "info": {
     "singularName": "person",
     "pluralName": "people",
-    "displayName": "person"
+    "displayName": "person",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,30 +18,31 @@
     "surname": {
       "type": "string"
     },
-    "age": {
-      "type": "integer"
-    },
-    "email": {
-      "type": "string"
-    },
     "gender": {
       "type": "string"
     },
     "picture": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "group": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::group.group",
       "inversedBy": "people"
+    },
+    "email": {
+      "type": "string"
+    },
+    "age": {
+      "type": "integer"
     }
   }
 }

@@ -720,6 +720,7 @@ export interface ApiPersonPerson extends Schema.CollectionType {
     singularName: 'person';
     pluralName: 'people';
     displayName: 'person';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -727,8 +728,6 @@ export interface ApiPersonPerson extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     surname: Attribute.String;
-    age: Attribute.Integer;
-    email: Attribute.String;
     gender: Attribute.String;
     picture: Attribute.Media;
     group: Attribute.Relation<
@@ -736,6 +735,8 @@ export interface ApiPersonPerson extends Schema.CollectionType {
       'manyToOne',
       'api::group.group'
     >;
+    email: Attribute.String;
+    age: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -747,6 +748,75 @@ export interface ApiPersonPerson extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::person.person',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSeasonSeason extends Schema.CollectionType {
+  collectionName: 'seasons';
+  info: {
+    singularName: 'season';
+    pluralName: 'seasons';
+    displayName: 'season';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    numSeason: Attribute.String;
+    numEpisodes: Attribute.Integer;
+    releaseDate: Attribute.Date;
+    rating: Attribute.Decimal;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::season.season',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::season.season',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSerieSerie extends Schema.CollectionType {
+  collectionName: 'series';
+  info: {
+    singularName: 'serie';
+    pluralName: 'series';
+    displayName: 'serie';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    synopsis: Attribute.Text;
+    releaseYear: Attribute.Integer;
+    rating: Attribute.Decimal;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::serie.serie',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::serie.serie',
       'oneToOne',
       'admin::user'
     > &
@@ -772,6 +842,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::group.group': ApiGroupGroup;
       'api::person.person': ApiPersonPerson;
+      'api::season.season': ApiSeasonSeason;
+      'api::serie.serie': ApiSerieSerie;
     }
   }
 }
