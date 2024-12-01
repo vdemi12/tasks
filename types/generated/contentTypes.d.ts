@@ -677,43 +677,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiGroupGroup extends Schema.CollectionType {
-  collectionName: 'groups';
-  info: {
-    singularName: 'group';
-    pluralName: 'groups';
-    displayName: 'group';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    picture: Attribute.String;
-    people: Attribute.Relation<
-      'api::group.group',
-      'oneToMany',
-      'api::person.person'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::group.group',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::group.group',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiPersonPerson extends Schema.CollectionType {
   collectionName: 'people';
   info: {
@@ -730,11 +693,6 @@ export interface ApiPersonPerson extends Schema.CollectionType {
     surname: Attribute.String;
     gender: Attribute.String;
     picture: Attribute.Media;
-    group: Attribute.Relation<
-      'api::person.person',
-      'manyToOne',
-      'api::group.group'
-    >;
     email: Attribute.String;
     age: Attribute.Integer;
     createdAt: Attribute.DateTime;
@@ -772,6 +730,11 @@ export interface ApiSeasonSeason extends Schema.CollectionType {
     numEpisodes: Attribute.Integer;
     releaseDate: Attribute.Date;
     rating: Attribute.Decimal;
+    series: Attribute.Relation<
+      'api::season.season',
+      'manyToOne',
+      'api::serie.serie'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -806,6 +769,11 @@ export interface ApiSerieSerie extends Schema.CollectionType {
     synopsis: Attribute.Text;
     releaseYear: Attribute.Integer;
     rating: Attribute.Decimal;
+    seasons: Attribute.Relation<
+      'api::serie.serie',
+      'oneToMany',
+      'api::season.season'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -840,7 +808,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::group.group': ApiGroupGroup;
       'api::person.person': ApiPersonPerson;
       'api::season.season': ApiSeasonSeason;
       'api::serie.serie': ApiSerieSerie;

@@ -26,6 +26,12 @@
     },
     "rating": {
       "type": "decimal"
+    },
+    "series": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::serie.serie",
+      "inversedBy": "seasons"
     }
   }
 }

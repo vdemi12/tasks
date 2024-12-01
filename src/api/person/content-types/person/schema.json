@@ -32,12 +32,6 @@
         "audios"
       ]
     },
-    "group": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::group.group",
-      "inversedBy": "people"
-    },
     "email": {
       "type": "string"
     },

@@ -23,6 +23,12 @@
     },
     "rating": {
       "type": "decimal"
+    },
+    "seasons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::season.season",
+      "mappedBy": "series"
     }
   }
 }
