@@ -376,10 +376,14 @@ export interface ApiPersonPerson extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     surname: Attribute.String;
-    gender: Attribute.String;
     picture: Attribute.Media;
-    email: Attribute.String;
-    age: Attribute.Integer;
+    email: Attribute.Email;
+    provider: Attribute.String;
+    password: Attribute.Password;
+    resetPasswordToken: Attribute.String;
+    confirmationToken: Attribute.String;
+    confirmed: Attribute.Boolean;
+    blocked: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
