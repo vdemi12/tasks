@@ -12,7 +12,7 @@
   "dependencies": {
     "@strapi/plugin-i18n": "4.15.0",
     "@strapi/plugin-users-permissions": "4.15.0",
-    "@strapi/provider-upload-cloudinary": "^5.4.1",
+    "@strapi/provider-upload-cloudinary": "^5.7.0",
     "@strapi/strapi": "4.15.0",
     "pg": "8.8.0"
   },
@@ -20,7 +20,7 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "f1aee518-2b6f-4002-9b65-ebad6c9de8d7"
+    "uuid": "dad090a9-adf7-4669-b6ea-c95e94d6acb3"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
