@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "series",
+  "info": {
+    "singularName": "serie",
+    "pluralName": "series",
+    "displayName": "serie",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "seasons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::season.season",
+      "mappedBy": "series"
+    },
+    "synopsis": {
+      "type": "text"
+    },
+    "releaseYear": {
+      "type": "integer"
+    },
+    "rating": {
+      "type": "decimal"
+    }
+  }
+}
