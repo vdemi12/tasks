@@ -362,6 +362,85 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiSeasonSeason extends Schema.CollectionType {
+  collectionName: 'seasons';
+  info: {
+    singularName: 'season';
+    pluralName: 'seasons';
+    displayName: 'season';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    numSeason: Attribute.String;
+    numEpisodes: Attribute.Integer;
+    releaseDate: Attribute.Date;
+    rating: Attribute.Decimal;
+    series: Attribute.Relation<
+      'api::season.season',
+      'manyToOne',
+      'api::serie.serie'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::season.season',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::season.season',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSerieSerie extends Schema.CollectionType {
+  collectionName: 'series';
+  info: {
+    singularName: 'serie';
+    pluralName: 'series';
+    displayName: 'serie';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    seasons: Attribute.Relation<
+      'api::serie.serie',
+      'oneToMany',
+      'api::season.season'
+    >;
+    synopsis: Attribute.Text;
+    releaseYear: Attribute.Integer;
+    rating: Attribute.Decimal;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::serie.serie',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::serie.serie',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -631,7 +710,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -660,135 +738,18 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPersonPerson extends Schema.CollectionType {
-  collectionName: 'people';
-  info: {
-    singularName: 'person';
-    pluralName: 'people';
-    displayName: 'person';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
     name: Attribute.String;
     surname: Attribute.String;
-    picture: Attribute.Media;
-    email: Attribute.Email;
-    provider: Attribute.String;
-    password: Attribute.Password;
-    resetPasswordToken: Attribute.String;
-    confirmationToken: Attribute.String;
-    confirmed: Attribute.Boolean;
-    blocked: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::person.person',
+      'plugin::users-permissions.user',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::person.person',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSeasonSeason extends Schema.CollectionType {
-  collectionName: 'seasons';
-  info: {
-    singularName: 'season';
-    pluralName: 'seasons';
-    displayName: 'season';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    numSeason: Attribute.String;
-    numEpisodes: Attribute.Integer;
-    releaseDate: Attribute.Date;
-    rating: Attribute.Decimal;
-    series: Attribute.Relation<
-      'api::season.season',
-      'manyToOne',
-      'api::serie.serie'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::season.season',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::season.season',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSerieSerie extends Schema.CollectionType {
-  collectionName: 'series';
-  info: {
-    singularName: 'serie';
-    pluralName: 'series';
-    displayName: 'serie';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    seasons: Attribute.Relation<
-      'api::serie.serie',
-      'oneToMany',
-      'api::season.season'
-    >;
-    synopsis: Attribute.Text;
-    releaseYear: Attribute.Integer;
-    rating: Attribute.Decimal;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::serie.serie',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::serie.serie',
+      'plugin::users-permissions.user',
       'oneToOne',
       'admin::user'
     > &
@@ -806,15 +767,14 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::season.season': ApiSeasonSeason;
+      'api::serie.serie': ApiSerieSerie;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::person.person': ApiPersonPerson;
-      'api::season.season': ApiSeasonSeason;
-      'api::serie.serie': ApiSerieSerie;
     }
   }
 }
