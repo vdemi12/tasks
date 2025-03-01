@@ -29,6 +29,15 @@
     },
     "rating": {
       "type": "decimal"
+    },
+    "locationName": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "decimal"
+    },
+    "longitude": {
+      "type": "decimal"
     }
   }
 }

@@ -423,6 +423,9 @@ export interface ApiSerieSerie extends Schema.CollectionType {
     synopsis: Attribute.Text;
     releaseYear: Attribute.Integer;
     rating: Attribute.Decimal;
+    locationName: Attribute.String;
+    latitude: Attribute.Decimal;
+    longitude: Attribute.Decimal;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
