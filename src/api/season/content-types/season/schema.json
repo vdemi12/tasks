@@ -27,7 +27,7 @@
     "rating": {
       "type": "decimal"
     },
-    "series": {
+    "serie": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::serie.serie",

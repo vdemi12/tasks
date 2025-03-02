@@ -379,7 +379,7 @@ export interface ApiSeasonSeason extends Schema.CollectionType {
     numEpisodes: Attribute.Integer;
     releaseDate: Attribute.Date;
     rating: Attribute.Decimal;
-    series: Attribute.Relation<
+    serie: Attribute.Relation<
       'api::season.season',
       'manyToOne',
       'api::serie.serie'
@@ -415,17 +415,17 @@ export interface ApiSerieSerie extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    seasons: Attribute.Relation<
-      'api::serie.serie',
-      'oneToMany',
-      'api::season.season'
-    >;
     synopsis: Attribute.Text;
     releaseYear: Attribute.Integer;
     rating: Attribute.Decimal;
     locationName: Attribute.String;
     latitude: Attribute.Decimal;
     longitude: Attribute.Decimal;
+    seasons: Attribute.Relation<
+      'api::serie.serie',
+      'oneToMany',
+      'api::season.season'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
